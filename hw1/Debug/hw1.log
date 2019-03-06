@@ -1,4 +1,18 @@
-﻿  Source1.cpp
-c:\users\rachel tao\documents\github\cs6533\hw1\source1.cpp(60): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-c:\users\rachel tao\documents\github\cs6533\hw1\source1.cpp(77): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
+﻿  Source.cpp
+c:\users\rachel tao\documents\github\cs6533\hw1\source.cpp(1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+c:\users\rachel tao\documents\github\cs6533\hw1\source.cpp(105): warning C4477: 'printf' : format string '%s' requires an argument of type 'char *', but variadic argument 1 has type 'std::string'
+c:\users\rachel tao\documents\github\cs6533\hw1\source.cpp(143): warning C4477: 'printf' : format string '%s' requires an argument of type 'char *', but variadic argument 1 has type 'std::string'
+c:\users\rachel tao\documents\github\cs6533\hw1\source.cpp(106): warning C4101: 'num1': unreferenced local variable
+c:\users\rachel tao\documents\github\cs6533\hw1\source.cpp(106): warning C4101: 'num2': unreferenced local variable
+c:\users\rachel tao\documents\github\cs6533\hw1\source.cpp(106): warning C4101: 'num3': unreferenced local variable
+c:\users\rachel tao\documents\github\cs6533\hw1\source.cpp(144): warning C4101: 'num1': unreferenced local variable
+c:\users\rachel tao\documents\github\cs6533\hw1\source.cpp(144): warning C4101: 'num2': unreferenced local variable
+c:\users\rachel tao\documents\github\cs6533\hw1\source.cpp(144): warning C4101: 'num3': unreferenced local variable
+c:\users\rachel tao\documents\github\cs6533\hw1\source.cpp(177): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\rachel tao\documents\github\cs6533\hw1\source.cpp(198): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\users\rachel tao\documents\github\cs6533\hw1\source.cpp(201): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\rachel tao\documents\github\cs6533\hw1\source.cpp(222): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
+c:\users\rachel tao\documents\github\cs6533\hw1\source.cpp(237): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+c:\users\rachel tao\documents\github\cs6533\hw1\source.cpp(251): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\rachel tao\documents\github\cs6533\hw1\source.cpp(263): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
   hw1.vcxproj -> C:\Users\Rachel Tao\Documents\GitHub\CS6533\hw1\Debug\hw1.exe
