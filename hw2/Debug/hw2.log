@@ -1,0 +1,40 @@
+﻿  InitShader.cpp
+c:\users\rachel tao\documents\github\cs6533\hw2\angel-yjc.h(63): warning C4305: 'initializing': truncation from 'double' to 'GLfloat'
+c:\users\rachel tao\documents\github\cs6533\hw2\mat-yjc-new.h(464): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\rachel tao\documents\github\cs6533\hw2\mat-yjc-new.h(465): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\rachel tao\documents\github\cs6533\hw2\mat-yjc-new.h(466): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\rachel tao\documents\github\cs6533\hw2\mat-yjc-new.h(467): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\rachel tao\documents\github\cs6533\hw2\mat-yjc-new.h(468): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\rachel tao\documents\github\cs6533\hw2\mat-yjc-new.h(469): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\rachel tao\documents\github\cs6533\hw2\mat-yjc-new.h(470): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\rachel tao\documents\github\cs6533\hw2\mat-yjc-new.h(471): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\rachel tao\documents\github\cs6533\hw2\mat-yjc-new.h(472): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\rachel tao\documents\github\cs6533\hw2\mat-yjc-new.h(867): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\rachel tao\documents\github\cs6533\hw2\mat-yjc-new.h(868): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\rachel tao\documents\github\cs6533\hw2\mat-yjc-new.h(869): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\rachel tao\documents\github\cs6533\hw2\mat-yjc-new.h(890): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\rachel tao\documents\github\cs6533\hw2\mat-yjc-new.h(892): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\rachel tao\documents\github\cs6533\hw2\mat-yjc-new.h(895): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\rachel tao\documents\github\cs6533\hw2\mat-yjc-new.h(911): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+  rotate-cube-new.cpp
+c:\users\rachel tao\documents\github\cs6533\hw2\angel-yjc.h(63): warning C4305: 'initializing': truncation from 'double' to 'GLfloat'
+c:\users\rachel tao\documents\github\cs6533\hw2\mat-yjc-new.h(464): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\rachel tao\documents\github\cs6533\hw2\mat-yjc-new.h(465): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\rachel tao\documents\github\cs6533\hw2\mat-yjc-new.h(466): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\rachel tao\documents\github\cs6533\hw2\mat-yjc-new.h(467): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\rachel tao\documents\github\cs6533\hw2\mat-yjc-new.h(468): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\rachel tao\documents\github\cs6533\hw2\mat-yjc-new.h(469): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\rachel tao\documents\github\cs6533\hw2\mat-yjc-new.h(470): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\rachel tao\documents\github\cs6533\hw2\mat-yjc-new.h(471): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\rachel tao\documents\github\cs6533\hw2\mat-yjc-new.h(472): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\rachel tao\documents\github\cs6533\hw2\mat-yjc-new.h(867): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\rachel tao\documents\github\cs6533\hw2\mat-yjc-new.h(868): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\rachel tao\documents\github\cs6533\hw2\mat-yjc-new.h(869): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\rachel tao\documents\github\cs6533\hw2\mat-yjc-new.h(890): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\rachel tao\documents\github\cs6533\hw2\mat-yjc-new.h(892): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\rachel tao\documents\github\cs6533\hw2\mat-yjc-new.h(895): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\rachel tao\documents\github\cs6533\hw2\mat-yjc-new.h(911): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\rachel tao\documents\github\cs6533\hw2\rotate-cube-new.cpp(247): warning C4305: 'argument': truncation from 'double' to 'const GLfloat'
+c:\users\rachel tao\documents\github\cs6533\hw2\rotate-cube-new.cpp(279): warning C4305: 'argument': truncation from 'double' to 'const GLfloat'
+  Generating Code...
+  hw2.vcxproj -> C:\Users\Rachel Tao\Documents\GitHub\CS6533\hw2\Debug\hw2.exe

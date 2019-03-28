@@ -16,6 +16,7 @@ using namespace std;
 
 
 void display();
+void idle();
 void myinit(void);
 void draw_circle(int x, int y, int r);
 void draw_four_points(int x, int y, int xx, int yy);
@@ -75,7 +76,7 @@ int main(int argc, char **argv)
 		glutDisplayFunc(display);
 		glutReshapeFunc(reshape);
 
-		glutIdleFunc(display);
+		glutIdleFunc(idle);
 	}
 
 
@@ -204,8 +205,7 @@ void display()
 			}
 			glEnd();
 
-			animation_index += 1;
-			if (animation_index > K) animation_index = 1;
+			
 	}
 	glEnd();
 
@@ -285,4 +285,10 @@ void draw_four_points(int x, int y, int xx, int yy)
 	glVertex2i(x - yy, y + xx);
 	glVertex2i(x + yy, y - xx);
 	glVertex2i(x - yy, y - xx);
+}
+
+void idle() {
+	animation_index += 1;
+	if (animation_index > K) animation_index = 1;
+	glutPostRedisplay();
 }
