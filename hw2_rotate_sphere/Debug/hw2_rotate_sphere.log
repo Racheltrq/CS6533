@@ -16,6 +16,15 @@ c:\users\rachel tao\documents\github\cs6533\hw2_rotate_sphere\mat-yjc-new.h(890)
 c:\users\rachel tao\documents\github\cs6533\hw2_rotate_sphere\mat-yjc-new.h(892): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
 c:\users\rachel tao\documents\github\cs6533\hw2_rotate_sphere\mat-yjc-new.h(895): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
 c:\users\rachel tao\documents\github\cs6533\hw2_rotate_sphere\mat-yjc-new.h(911): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
-c:\users\rachel tao\documents\github\cs6533\hw2_rotate_sphere\source1.cpp(256): warning C4305: 'argument': truncation from 'double' to 'const GLfloat'
-c:\users\rachel tao\documents\github\cs6533\hw2_rotate_sphere\source1.cpp(288): warning C4305: 'argument': truncation from 'double' to 'const GLfloat'
+c:\users\rachel tao\documents\github\cs6533\hw2_rotate_sphere\source1.cpp(79): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\rachel tao\documents\github\cs6533\hw2_rotate_sphere\source1.cpp(170): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\rachel tao\documents\github\cs6533\hw2_rotate_sphere\source1.cpp(295): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\rachel tao\documents\github\cs6533\hw2_rotate_sphere\source1.cpp(305): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\rachel tao\documents\github\cs6533\hw2_rotate_sphere\source1.cpp(306): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\rachel tao\documents\github\cs6533\hw2_rotate_sphere\source1.cpp(315): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\rachel tao\documents\github\cs6533\hw2_rotate_sphere\source1.cpp(357): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
+c:\users\rachel tao\documents\github\cs6533\hw2_rotate_sphere\source1.cpp(377): warning C4305: 'argument': truncation from 'double' to 'const GLfloat'
+c:\users\rachel tao\documents\github\cs6533\hw2_rotate_sphere\source1.cpp(420): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\rachel tao\documents\github\cs6533\hw2_rotate_sphere\source1.cpp(421): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\rachel tao\documents\github\cs6533\hw2_rotate_sphere\source1.cpp(422): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
   hw2_rotate_sphere.vcxproj -> C:\Users\Rachel Tao\Documents\GitHub\CS6533\hw2_rotate_sphere\Debug\hw2_rotate_sphere.exe
