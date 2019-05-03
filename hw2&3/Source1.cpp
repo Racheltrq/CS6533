@@ -50,8 +50,13 @@ GLuint floor_buffer;  /* vertex buffer object id for floor */
 GLuint axis_buffer;
 GLuint cube_buffer;
 GLuint shadow_buffer;
+GLuint flat_shading_buffer;
+GLuint smooth_shading_buffer;
 point3 *shadow_data;
 color3 shadow_color[4500];
+point4 *shading_vertices;
+point4 *flat_shading_vertices;
+point4 *smooth_shading_vertices;
 
 GLuint  model_view;  // model-view matrix uniform shader variable location
 GLuint  projection;  // projection matrix uniform shader variable location
@@ -156,10 +161,10 @@ color3 vertex_colors[9] = {
 
 
 point3 vertices_floor[4] = {
-	point3(5, 0,  8),
-	point3(5, 0,  -4),
-	point3(-5,  0,  -4),
-	point3(-5,  0,  8),
+	point3(5, -0.01,  8),
+	point3(5, -0.01,  -4),
+	point3(-5, -0.01,  -4),
+	point3(-5, -0.01,  8),
 };
 
 point4 vertices_floor_f[4] = {
@@ -289,6 +294,34 @@ float distance(point3 p1, point3 p2) {
 	float dz = p1.z - p2.z;
 	return sqrt3f(dx, dy, dz);
 }
+
+void normal_vec_flat() {
+	int i = 0;
+	for (int j = 0; j < sphere_Num_Triangle; j += 3) {
+		vec4 ver1 = shading_vertices[j];
+		vec4 ver2 = shading_vertices[j + 1];
+		vec4 ver3 = shading_vertices[j + 2];
+		vec4 u = ver2 - ver1;
+		vec4 v = ver3 - ver1;
+
+		vec3 res_normal = normalize(cross(u, v));
+		flat_shading_vertices[i] = res_normal;
+		i++;
+		flat_shading_vertices[i] = res_normal;
+		i++;
+		flat_shading_vertices[i] = res_normal;
+		i++;
+		
+	}
+}
+
+void normal_vec_smooth() {
+	for (int i = 0; i < sphere_Num_Triangle * 3; i++) {
+		vec3 ver = vec3(shading_vertices[i][0], shading_vertices[i][1], shading_vertices[i][2]);
+		smooth_shading_vertices[i] = normalize(ver);
+	}
+}
+
 void init()
 {
 	translateVector = new point3[totalRoute];
@@ -322,7 +355,21 @@ void init()
 	glBufferSubData(GL_ARRAY_BUFFER, sizeof(floor_light_vertices),
 		sizeof(floor_normal), floor_normal);
 
+	glGenBuffers(1, &flat_shading_buffer);
+	glBindBuffer(GL_ARRAY_BUFFER, flat_shading_buffer);
+	glBufferData(GL_ARRAY_BUFFER, 3 * sphere_Num_Triangle * sizeof(point4) + 3 * sphere_Num_Triangle * sizeof(color3),
+		NULL, GL_STATIC_DRAW);
+	glBufferSubData(GL_ARRAY_BUFFER, 0, 3 * sphere_Num_Triangle * sizeof(point4), shading_vertices);
+	glBufferSubData(GL_ARRAY_BUFFER, 3 * sphere_Num_Triangle * sizeof(point4),
+		3 * sphere_Num_Triangle * sizeof(color3), flat_shading_vertices);
 
+	glGenBuffers(1, &smooth_shading_buffer);
+	glBindBuffer(GL_ARRAY_BUFFER, smooth_shading_buffer);
+	glBufferData(GL_ARRAY_BUFFER, 3 * sphere_Num_Triangle * sizeof(point4) + 3 * sphere_Num_Triangle * sizeof(color3),
+		NULL, GL_STATIC_DRAW);
+	glBufferSubData(GL_ARRAY_BUFFER, 0, 3 * sphere_Num_Triangle * sizeof(point4), shading_vertices);
+	glBufferSubData(GL_ARRAY_BUFFER, 3 * sphere_Num_Triangle * sizeof(point4),
+		3 * sphere_Num_Triangle * sizeof(color3), smooth_shading_vertices);
 
 	axis();
 	glGenBuffers(1, &axis_buffer);
@@ -397,7 +444,11 @@ void file_in() {
 			sphere_Num_Triangle = std::stof(line);
 			spherePoints = new point3[sphere_Num_Triangle * 3];
 			shadow_data = new point3[sphere_Num_Triangle * 3];
+			shading_vertices = new point4[sphere_Num_Triangle * 3];
+			flat_shading_vertices = new point4[sphere_Num_Triangle * 3];
+			smooth_shading_vertices = new point4[sphere_Num_Triangle * 3];
 		}
+
 		if ((line_num % 4 != 1) && (line_num > 1)) {
 			int index1 = line.find(' ');
 			int index2 = line.find(' ', index1 + 1);
@@ -409,6 +460,7 @@ void file_in() {
 			if (x < x_min) x_min = x;
 			spherePoints[count] = {x, y, z};
 			shadow_data[count] = { x, y, z };
+			shading_vertices[count] = vec4(x, y, z, 1);
 			count++;
 			vertex_num += 1;
 			
@@ -504,15 +556,10 @@ void display(void)
 
 /*----- Set up the Mode-View matrix for the floor -----*/
  // The set-up below gives a new scene (scene 2), using Correct LookAt() function
+	//glDepthMask(GL_FALSE);
+	//glColorMask(GL_FALSE, GL_FALSE, GL_FALSE, GL_FALSE);
+
 	mv = LookAt(eye, at, up) * Translate(0, 0, 0);
-	//
-	// The set-up below gives the original scene (scene 1), using Correct LookAt()
-	//    mv = Translate(0.0, 0.0, 0.3) * LookAt(eye, at, up) * Scale (1.6, 1.5, 3.3);
-	//
-	// The set-up below gives the original scene (scene 1), when using previously 
-	//       Incorrect LookAt() (= Translate(1.0, 1.0, 0.0) * correct LookAt() ) 
-	//    mv = Translate(-1.0, -1.0, 0.3) * LookAt(eye, at, up) * Scale (1.6, 1.5, 3.3);
-	//
 	glUniformMatrix4fv(model_view, 1, GL_TRUE, mv); // GL_TRUE: matrix is row-major
 	if (floorFlag == 1) // Filled floor
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
@@ -522,6 +569,21 @@ void display(void)
 
 	//rotationMatrix = Rotate(0.05, rotationAxis[currentRoute - 1].x, rotationAxis[currentRoute - 1].y, rotationAxis[currentRoute - 1].z) * rotationMatrix;
 	//cout << "rotationAxis: " << rotationAxis[currentRoute] << endl;
+
+	
+	//glDepthMask(GL_FALSE);
+	//glColorMask(GL_FALSE, GL_FALSE, GL_FALSE, GL_FALSE);
+	glUseProgram(program);
+	mat4 shadow_transMatrix(12, 0, 0, 0, 14, 0, 3, -1, 0, 0, 12, 0, 0, 0, 0, 12);
+	mv = LookAt(eye, at, up) * shadow_transMatrix * Translate(spherePos.x, spherePos.y, spherePos.z) * rotationMatrix;
+	glUniformMatrix4fv(model_view, 1, GL_TRUE, mv);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	drawObj(shadow_buffer, sphere_Num_Triangle * 3);
+
+	//glDepthMask(GL_TRUE);
+	//glColorMask(GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
+
+
 	if (animationFlag == 1) {
 		spherePos.x = spherePos.x + translateVector[currentRoute].x * speed * 3.14 / 180 * radius;
 		spherePos.y = spherePos.y + translateVector[currentRoute].y * speed * 3.14 / 180 * radius;
@@ -535,16 +597,8 @@ void display(void)
 		mv = LookAt(eye, at, up) * Translate(spherePos.x, spherePos.y, spherePos.z) * rotationMatrix;
 	}
 	glUniformMatrix4fv(model_view, 1, GL_TRUE, mv);
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	drawObj(sphere_buffer, sphere_Num_Triangle * 3);
-
-	glUseProgram(program);
-	mat4 shadow_transMatrix(12, 0, 0, 0, 14, 0, 3, -1, 0, 0, 12, 0, 0, 0, 0, 12);
-	mv = LookAt(eye, at, up) * shadow_transMatrix * Translate(spherePos.x, spherePos.y, spherePos.z) * rotationMatrix;
-	glUniformMatrix4fv(model_view, 1, GL_TRUE, mv);
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-	drawObj(shadow_buffer, sphere_Num_Triangle * 3);
-
 
 	glutSwapBuffers();
 }
@@ -590,6 +644,7 @@ void addMenu() {
 	glutCreateMenu(main_menu);
 	glutAddMenuEntry("Default View Point", 0);
 	glutAddMenuEntry("Quit", 1);
+	glutAddMenuEntry("Shadow", 2);
 	glutAttachMenu(GLUT_LEFT_BUTTON);
 }
 

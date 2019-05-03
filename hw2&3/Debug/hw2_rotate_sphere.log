@@ -16,20 +16,24 @@ c:\users\rachel tao\documents\github\cs6533\hw2&3\mat-yjc-new.h(890): warning C4
 c:\users\rachel tao\documents\github\cs6533\hw2&3\mat-yjc-new.h(892): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
 c:\users\rachel tao\documents\github\cs6533\hw2&3\mat-yjc-new.h(895): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
 c:\users\rachel tao\documents\github\cs6533\hw2&3\mat-yjc-new.h(911): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
-c:\users\rachel tao\documents\github\cs6533\hw2&3\source1.cpp(91): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\rachel tao\documents\github\cs6533\hw2&3\source1.cpp(106): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-c:\users\rachel tao\documents\github\cs6533\hw2&3\source1.cpp(110): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\rachel tao\documents\github\cs6533\hw2&3\source1.cpp(111): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\rachel tao\documents\github\cs6533\hw2&3\source1.cpp(117): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-c:\users\rachel tao\documents\github\cs6533\hw2&3\source1.cpp(118): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-c:\users\rachel tao\documents\github\cs6533\hw2&3\source1.cpp(222): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-c:\users\rachel tao\documents\github\cs6533\hw2&3\source1.cpp(395): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\rachel tao\documents\github\cs6533\hw2&3\source1.cpp(406): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\rachel tao\documents\github\cs6533\hw2&3\source1.cpp(407): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\rachel tao\documents\github\cs6533\hw2&3\source1.cpp(417): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\rachel tao\documents\github\cs6533\hw2&3\source1.cpp(484): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
-c:\users\rachel tao\documents\github\cs6533\hw2&3\source1.cpp(497): warning C4305: 'argument': truncation from 'double' to 'const GLfloat'
-c:\users\rachel tao\documents\github\cs6533\hw2&3\source1.cpp(524): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
-c:\users\rachel tao\documents\github\cs6533\hw2&3\source1.cpp(525): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
-c:\users\rachel tao\documents\github\cs6533\hw2&3\source1.cpp(526): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\rachel tao\documents\github\cs6533\hw2&3\source1.cpp(96): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\rachel tao\documents\github\cs6533\hw2&3\source1.cpp(111): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\rachel tao\documents\github\cs6533\hw2&3\source1.cpp(115): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\rachel tao\documents\github\cs6533\hw2&3\source1.cpp(116): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\rachel tao\documents\github\cs6533\hw2&3\source1.cpp(122): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\rachel tao\documents\github\cs6533\hw2&3\source1.cpp(123): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\rachel tao\documents\github\cs6533\hw2&3\source1.cpp(164): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\rachel tao\documents\github\cs6533\hw2&3\source1.cpp(165): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\rachel tao\documents\github\cs6533\hw2&3\source1.cpp(166): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\rachel tao\documents\github\cs6533\hw2&3\source1.cpp(167): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\rachel tao\documents\github\cs6533\hw2&3\source1.cpp(227): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\rachel tao\documents\github\cs6533\hw2&3\source1.cpp(444): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\rachel tao\documents\github\cs6533\hw2&3\source1.cpp(459): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\rachel tao\documents\github\cs6533\hw2&3\source1.cpp(460): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\rachel tao\documents\github\cs6533\hw2&3\source1.cpp(471): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\rachel tao\documents\github\cs6533\hw2&3\source1.cpp(538): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
+c:\users\rachel tao\documents\github\cs6533\hw2&3\source1.cpp(551): warning C4305: 'argument': truncation from 'double' to 'const GLfloat'
+c:\users\rachel tao\documents\github\cs6533\hw2&3\source1.cpp(588): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\rachel tao\documents\github\cs6533\hw2&3\source1.cpp(589): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\rachel tao\documents\github\cs6533\hw2&3\source1.cpp(590): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
   hw2_rotate_sphere.vcxproj -> C:\Users\Rachel Tao\Documents\GitHub\CS6533\hw2&3\Debug\hw2_rotate_sphere.exe
