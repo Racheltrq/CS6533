@@ -77,6 +77,9 @@ int animationFlag = 0; // 1: animation; 0: non-animation. Toggled by key 'a' or 
 int cubeFlag = 1;   // 1: solid cube; 0: wireframe cube. Toggled by key 'c' or 'C'
 int floorFlag = 1;  // 1: solid floor; 0: wireframe floor. Toggled by key 'f' or 'F'
 
+int wireFlag = 1;
+int pointFlag = 1;
+
 const int cube_NumVertices = 36; //(6 faces)*(2 triangles/face)*(3 vertices/triangle)
 #if 0
 point3 cube_points[cube_NumVertices]; // positions for all vertices
@@ -121,7 +124,7 @@ float quad_att = 0.01;
 color4 material_ambient(1.0, 0.0, 1.0, 1.0);
 color4 material_diffuse(1.0, 0.8, 0.0, 1.0);
 color4 material_specular(1.0, 0.8, 0.0, 1.0);
-float  material_shininess = 100.0;
+float  material_shininess = 125.0;
 
 color4 ambient_product = light_ambient * material_ambient;
 color4 diffuse_product = light_diffuse * material_diffuse;
@@ -257,6 +260,92 @@ void SetUp_Lighting_Uniform_Vars(mat4 mv)
 
 	glUniform1f(glGetUniformLocation(program, "Shininess"),
 		material_shininess);
+}
+
+void floor_lighting_param()
+{
+	color4 material_ambient(0.2, 0.2, 0.2, 1.0);
+	color4 material_diffuse(0, 1.0, 0, 1);
+	color4 material_specular(0, 0, 0, 1);
+	glUniform4fv(glGetUniformLocation(program, "ini_material_ambient"), 1, material_ambient);
+	glUniform4fv(glGetUniformLocation(program, "ini_material_diffuse"), 1, material_diffuse);
+	glUniform4fv(glGetUniformLocation(program, "ini_material_specular"), 1, material_specular);
+	glUniform1f(glGetUniformLocation(program, "Shininess"), 1.0);
+}
+
+void sphere_lighting_param()
+{
+	color4 material_ambient(0.2, 0.2, 0.2, 1.0);
+	color4 material_diffuse(1.0, 0.84, 0, 1);
+	color4 material_specular(1.0, 0.84, 0, 1);
+	glUniform4fv(glGetUniformLocation(program, "ini_material_ambient"), 1, material_ambient);
+	glUniform4fv(glGetUniformLocation(program, "ini_material_diffuse"), 1, material_diffuse);
+	glUniform4fv(glGetUniformLocation(program, "ini_material_specular"), 1, material_specular);
+	glUniform1f(glGetUniformLocation(program, "Shininess"), 125);
+
+}
+
+void point_light_param(mat4 mv) {
+	color4 light_ambient(0, 0, 0, 1.0);
+	color4 light_diffuse(1.0, 1.0, 1.0, 1.0);
+	color4 light_specular(1.0, 1.0, 1.0, 1.0);
+	float const_att = 2.0;
+	float linear_att = 0.01;
+	float quad_att = 0.001;
+	vec4 light_position_eyeFrame = mv * light_position;
+	glUniform4fv(glGetUniformLocation(program, "LightPosition"),
+		1, light_position_eyeFrame);
+
+	glUniform1f(glGetUniformLocation(program, "ConstAtt"),
+		const_att);
+	glUniform1f(glGetUniformLocation(program, "LinearAtt"),
+		linear_att);
+	glUniform1f(glGetUniformLocation(program, "QuadAtt"),
+		quad_att);
+	glUniform4fv(glGetUniformLocation(program, "input_light_ambient"), 1,
+		light_ambient);
+	glUniform4fv(glGetUniformLocation(program, "input_light_diffuse"), 1,
+		light_diffuse);
+	glUniform4fv(glGetUniformLocation(program, "input_light_specular"), 1,
+		light_specular);
+	glUniform1f(glGetUniformLocation(program, "point_flag"), 1.0);
+	glUniform1f(glGetUniformLocation(program, "spot_flag"), 0.0);
+}
+
+void spot_light_param(mat4 mv) {
+	color4 light_ambient(0, 0, 0, 1.0);
+	color4 light_diffuse(1.0, 1.0, 1.0, 1.0);
+	color4 light_specular(1.0, 1.0, 1.0, 1.0);
+	float const_att = 2.0;
+	float linear_att = 0.01;
+	float quad_att = 0.001;
+
+	float spot_exp = 15.0;
+	float spot_ang = cos(20.0 * 3.14 / 180);
+
+	vec4 light_position_eyeFrame = mv * light_position;
+	glUniform4fv(glGetUniformLocation(program, "LightPosition"),
+		1, light_position_eyeFrame);
+
+	glUniform1f(glGetUniformLocation(program, "ConstAtt"),
+		const_att);
+	glUniform1f(glGetUniformLocation(program, "LinearAtt"),
+		linear_att);
+	glUniform1f(glGetUniformLocation(program, "QuadAtt"),
+		quad_att);
+	glUniform4fv(glGetUniformLocation(program, "input_light_ambient"), 1,
+		light_ambient);
+	glUniform4fv(glGetUniformLocation(program, "input_light_diffuse"), 1,
+		light_diffuse);
+	glUniform4fv(glGetUniformLocation(program, "input_light_specular"), 1,
+		light_specular);
+	glUniform1f(glGetUniformLocation(program, "point_flag"), 0.0);
+	glUniform1f(glGetUniformLocation(program, "spot_flag"), 1.0);
+	point4 spot_direction = mv * vec4(-6.0, 0.0, -4.5, 1.0);
+	glUniform4fv(glGetUniformLocation(program, "spot_direction"), 1,
+		spot_direction);
+	glUniform1f(glGetUniformLocation(program, "spot_exp"), spot_exp);
+	glUniform1f(glGetUniformLocation(program, "spot_ang"), spot_ang);
 }
 
 point3 crossProduct(point3 u, point3 v) {
@@ -401,12 +490,6 @@ void init()
 		shadow_color);
 
 
-
-
-
-
-	
-
 	// Load shaders and create a shader program (to be used in display())
 	program = InitShader("vshader42.glsl", "fshader42.glsl");
 	
@@ -527,8 +610,6 @@ void drawObj_lighting(GLuint buffer, int num_vertices)
 //----------------------------------------------------------------------------
 void display(void)
 {
-
-
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	glUseProgram(program); // Use the shader program
@@ -541,23 +622,18 @@ void display(void)
 	mat4  p = Perspective(fovy, aspect, zNear, zFar);
 	glUniformMatrix4fv(projection, 1, GL_TRUE, p); // GL_TRUE: matrix is row-major
 
-/*---  Set up and pass on Model-View matrix to the shader ---*/
-	// eye is a global variable of vec4 set to init_eye and updated by keyboard()
+
 	vec4    at(0.0, 0.0, 0.0, 1.0);
 	vec4    up(0.0, 1.0, 0.0, 0.0);
-
 	mat4  mv = LookAt(eye, at, up);
 
-	mv = mv * Translate(0, 0.2, 0);
+	//mv = mv * Translate(0, 0, 0);
 	SetUp_Lighting_Uniform_Vars(mv);
 	glUniformMatrix4fv(model_view, 1, GL_TRUE, mv); // GL_TRUE: matrix is row-major
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	drawObj(axis_buffer, 9);
 
-/*----- Set up the Mode-View matrix for the floor -----*/
- // The set-up below gives a new scene (scene 2), using Correct LookAt() function
-	//glDepthMask(GL_FALSE);
-	//glColorMask(GL_FALSE, GL_FALSE, GL_FALSE, GL_FALSE);
+
 
 	mv = LookAt(eye, at, up) * Translate(0, 0, 0);
 	glUniformMatrix4fv(model_view, 1, GL_TRUE, mv); // GL_TRUE: matrix is row-major
@@ -567,8 +643,7 @@ void display(void)
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	drawObj(floor_buffer, floor_NumVertices);  // draw the floor
 
-	//rotationMatrix = Rotate(0.05, rotationAxis[currentRoute - 1].x, rotationAxis[currentRoute - 1].y, rotationAxis[currentRoute - 1].z) * rotationMatrix;
-	//cout << "rotationAxis: " << rotationAxis[currentRoute] << endl;
+
 
 	
 	//glDepthMask(GL_FALSE);
@@ -577,7 +652,8 @@ void display(void)
 	mat4 shadow_transMatrix(12, 0, 0, 0, 14, 0, 3, -1, 0, 0, 12, 0, 0, 0, 0, 12);
 	mv = LookAt(eye, at, up) * shadow_transMatrix * Translate(spherePos.x, spherePos.y, spherePos.z) * rotationMatrix;
 	glUniformMatrix4fv(model_view, 1, GL_TRUE, mv);
-	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	if (wireFlag == 0) glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	else glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	drawObj(shadow_buffer, sphere_Num_Triangle * 3);
 
 	//glDepthMask(GL_TRUE);
@@ -597,7 +673,8 @@ void display(void)
 		mv = LookAt(eye, at, up) * Translate(spherePos.x, spherePos.y, spherePos.z) * rotationMatrix;
 	}
 	glUniformMatrix4fv(model_view, 1, GL_TRUE, mv);
-	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	if (wireFlag == 0) glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	else glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	drawObj(sphere_buffer, sphere_Num_Triangle * 3);
 
 	glutSwapBuffers();
@@ -640,13 +717,25 @@ void main_menu(int index)
 	display();
 }
 
+void wire_menu(int index) {
+	wireFlag = index - 1;
+	display();
+}
+
 void addMenu() {
+	int wire = glutCreateMenu(wire_menu);
+	glutAddMenuEntry("Solid", 1);
+	glutAddMenuEntry("Wire frame", 2);
+
 	glutCreateMenu(main_menu);
 	glutAddMenuEntry("Default View Point", 0);
+	glutAddSubMenu("Wire Frame", wire);
 	glutAddMenuEntry("Quit", 1);
-	glutAddMenuEntry("Shadow", 2);
+	
 	glutAttachMenu(GLUT_LEFT_BUTTON);
 }
+
+
 
 
 
