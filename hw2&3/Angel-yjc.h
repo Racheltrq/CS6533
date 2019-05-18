@@ -32,12 +32,13 @@
 //
 
 #ifdef __APPLE__  // include Mac OS X verions of headers
-#  include <OpenGL/gl3.h> // Defines APIs for the core profile of OpenGL 3.2
-#  define __gl_h_ // This will prevent inclusion of gl.h
+#  include <OpenGL/OpenGL.h>
 #  include <GLUT/glut.h>
 #else // non-Mac OS X operating systems
-#  include <GL\glew.h>
-#  include <GL\freeglut.h>
+#  include <GL/glew.h>
+#  include <GL/glut.h>
+// #  include <GL/freeglut.h>
+// #  include <GL/freeglut_ext.h>
 #endif  // __APPLE__
 
 // Define a helpful macro for handling offsets into buffer objects

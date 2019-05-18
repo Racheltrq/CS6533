@@ -9,7 +9,7 @@ namespace Angel {
 static char*
 readShaderSource(const char* shaderFile)
 {
-	FILE *fp = fopen(shaderFile, "r");
+    FILE* fp = fopen(shaderFile, "r");
 
     if ( fp == NULL ) { return NULL; }
 
@@ -22,15 +22,6 @@ readShaderSource(const char* shaderFile)
 
     buf[size] = '\0';
     fclose(fp);
-
-    // In case there are illegal non-ASCII characters (due to different 
-    // encoding systems), the following code will replace each of them
-    // with a space ' '.
-    for (int i = 0; i < size + 1; i++) 
-      {
-        if (!(buf[i] >= 0 && buf[i] < 128))
-           buf[i] = ' ';
-      }
 
     return buf;
 }
