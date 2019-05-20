@@ -12,6 +12,9 @@
 //     The correct new functions "transpose1()" are added for each type.
 //     ==> Use "transpose1()" instead.
 //
+//  3'. Originally the function LookAt() was *incorrect*. It has now been fixed.
+//      The correct function is still called "LookAt()". (Search for it to see it.)
+//
 //  4. For matrix A, ust A[i][j] to get the item at i-th row and j-th column
 //     (i, j both start from 0).
 //   
@@ -919,8 +922,17 @@ inline
 mat4 LookAt( const vec4& eye, const vec4& at, const vec4& up )
 {
     vec4 n = normalize(eye - at);
-    vec4 u = normalize(cross(up,n));
-    vec4 v = normalize(cross(n,u));
+
+    //YJC: Corrected below
+    vec4 u = normalize( vec4(cross(up,n),0) );
+    vec4 v = normalize( vec4(cross(n,u),0) );
+    //
+    //YJC: Original below --- Incorrect since vec4() construct will
+    //     set the w component (the 4th component) to 1 (see "vec.h").
+    //     But u, v are each a basis vector and w should be 0, as above.
+    // vec4 u = normalize( cross(up,n) );
+    // vec4 v = normalize( cross(n,u)  );
+    
     vec4 t = vec4(0.0, 0.0, 0.0, 1.0);
     mat4 c = mat4(u, v, n, t);
     return c * Translate( -eye );
